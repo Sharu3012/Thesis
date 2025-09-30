@@ -70,22 +70,17 @@ def predict_leaf_from_image(img, plant_size=(224, 224), aphid_size=(224, 224)):
 
 # Run predictions from folder
 
-image_folder = "/home/pi/test_images/"  
+img_path = "/home/thesis/Downloads/multi_model/exp1.jpg"
+img = Image.open(img_path).convert('RGB')
+result = predict_leaf_from_image(img)
 
-for file in os.listdir(image_folder):
-    if file.endswith((".jpg", ".png")):
-        img_path = os.path.join(image_folder, file)
-        img = Image.open(img_path).convert('RGB')
-        result = predict_leaf_from_image(img)
-        
-        print(f"\nPrediction for {file}:")
-        print(f"  Plant Status: {result['plant_overall']}")
-        print(f"    Healthy prob: {result['healthy_prob']*100:.2f}%")
-        print(f"    Diseased prob: {result['diseased_prob']*100:.2f}%")
-        if result['plant_overall'] == "Diseased":
-            print(f"    Most likely disease: {result['most_likely_disease']}")
-            print(f"    Aphid Prediction: {result['aphid_class']}")
-
+print(f"\nPrediction for {img_path}:")
+print(f"  Plant Status: {result['plant_overall']}")
+print(f"    Healthy prob: {result['healthy_prob']*100:.2f}%")
+print(f"    Diseased prob: {result['diseased_prob']*100:.2f}%")
+if result['plant_overall'] == "Diseased":
+    print(f"    Most likely disease: {result['most_likely_disease']}")
+    print(f"    Aphid Prediction: {result['aphid_class']}")
 
 # Camera-ready code (future)
 
@@ -101,3 +96,4 @@ for file in os.listdir(image_folder):
 #         break
 # cap.release()
 # cv2.destroyAllWindows()
+
