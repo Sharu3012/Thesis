@@ -1,16 +1,8 @@
-# 1. Remove old venv
-deactivate
-rm -rf ~/Downloads/multi_model/venv
 
-# 2. Install system dependencies
-sudo apt update
-sudo apt install python3-pip python3-venv libopenblas-dev -y
-
-# 3. Create new virtual environment
-cd ~/Downloads/multi_model
-python3 -m venv venv
-source venv/bin/activate
-
-# 4. Install Python packages
-pip install --upgrade pip
-pip install numpy==1.24.4 Pillow tflite-runtime
+(venv) thesis@raspberrypi:~/Downloads/multi_model $ python3 multimodel_lite.py
+Traceback (most recent call last):
+  File "/home/thesis/Downloads/multi_model/multimodel_lite.py", line 75, in <module>
+    for file in os.listdir(image_folder):
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+NotADirectoryError: [Errno 20] Not a directory: '/home/thesis/Downloads/multi_model/exp1.jpg'
+(venv) thesis@raspberrypi:~/Downloads/multi_model $ 
